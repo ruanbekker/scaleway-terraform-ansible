@@ -1,8 +1,11 @@
-Another one Terraform and Ansible scripts for automatic cloud deploying on Scaleway.
-
+Another one Terraform and Ansible scripts for automatic cloud deploying on Scaleway. Big thanks to [@a0s](https://github.com/a0s) for this.
 ## Features
 - One bastion host (router) with one public ip
 - Access to internet from inner node (without public ip) with tinc vpn 
+
+## Related content:
+- https://kenji.sx/posts/scwros
+- https://github.com/jbonachera/scaleway-coreos
 
 ## Prerequisites
 
@@ -10,6 +13,7 @@ Ansible >= 2.7.0
 
 ```bash
 brew install ansible terraform terraform-inventory packer jq
+sudo pip install netaddr
 ```
 
 ## Variables
@@ -35,6 +39,7 @@ export TF_VAR_scaleway_node_count=5 # default: 2
 ./bin/terraform.sh  # create nodes
 ./bin/tinc.sh       # setup tinc network
 ./bin/openvpn.sh    # setup openvpn at router, key will be copied into openvpn_keys/
+./bin/pritunl.sh    # setup pritunl at router
 
 # Get router external ip 
 ./bin/ansible/router_public_ip.sh
