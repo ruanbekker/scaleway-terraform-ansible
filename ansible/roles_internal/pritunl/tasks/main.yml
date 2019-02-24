@@ -34,15 +34,15 @@
 
 - name: Install required packages
   apt:
-    name: "{{ item }}"
+    name: [
+      'mongodb-org',
+      'pritunl'
+    ]
     update_cache: yes
     cache_valid_time: 86400
     state: present
     install_recommends: no
     allow_unauthenticated: true
-  with_items:
-  - mongodb-org
-  - pritunl
 
 - systemd:
     enabled: true
